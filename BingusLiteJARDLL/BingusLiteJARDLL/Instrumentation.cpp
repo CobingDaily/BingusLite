@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "globals.h"
-#include "com_shtruz_externalfinalscounter_instrument_Instrumentation.h"
+#include "com_laz_binguslite_instrument_Instrumentation.h"
 
 void JNICALL ClassFileLoadHook(jvmtiEnv* jvmti, JNIEnv* jni,
     jclass class_being_redefined, jobject loader,
@@ -30,7 +30,7 @@ void JNICALL ClassFileLoadHook(jvmtiEnv* jvmti, JNIEnv* jni,
 }
 
 jboolean JNICALL
-Java_com_shtruz_externalfinalscounter_instrument_Instrumentation_retransformClass(JNIEnv* jni, jobject object, jclass clazz)
+Java_com_laz_binguslite_instrument_Instrumentation_retransformClass(JNIEnv* jni, jobject object, jclass clazz)
 {
     return jvmti->RetransformClasses(1, &clazz) == JVMTI_ERROR_NONE;
 }

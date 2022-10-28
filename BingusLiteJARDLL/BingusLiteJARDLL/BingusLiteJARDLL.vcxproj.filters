@@ -18,10 +18,10 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="com_shtruz_externalfinalscounter_ExternalFinalsCounter.h">
+    <ClInclude Include="com_laz_binguslite_BingusLite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="com_shtruz_externalfinalscounter_instrument_Instrumentation.h">
+    <ClInclude Include="com_laz_binguslite_instrument_Instrumentation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globals.h">
@@ -32,7 +32,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExternalFinalsCounter.cpp">
+    <ClCompile Include="BingusLite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Instrumentation.cpp">

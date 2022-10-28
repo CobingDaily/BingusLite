@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "globals.h"
-#include "com_shtruz_externalfinalscounter_ExternalFinalsCounter.h"
+#include "com_laz_binguslite_BingusLite.h"
 
 JavaVM* vm = nullptr;
 JNIEnv* jni = nullptr;
@@ -24,7 +24,7 @@ JNI_OnLoad(JavaVM* jvm, void* reserved)
 }
 
 jboolean JNICALL
-Java_com_shtruz_externalfinalscounter_ExternalFinalsCounter_initialize(JNIEnv*, jobject object, jobject classLoader)
+Java_com_laz_binguslite_BingusLite_initialize(JNIEnv*, jobject object, jobject classLoader)
 {
     if (vm->GetEnv(reinterpret_cast<void**>(&jni), JNI_VERSION_1_8) != JNI_OK)
     {
@@ -69,11 +69,11 @@ Java_com_shtruz_externalfinalscounter_ExternalFinalsCounter_initialize(JNIEnv*, 
     sizeMethodID = jni->GetMethodID(listClass, "size", "()I");
     getMethodID = jni->GetMethodID(listClass, "get", "(I)Ljava/lang/Object;");
 
-    transformerClass = reinterpret_cast<jclass>(jni->NewGlobalRef(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.shtruz.externalfinalscounter.instrument.transformer.Transformer"))));
+    transformerClass = reinterpret_cast<jclass>(jni->NewGlobalRef(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.laz.binguslite.instrument.transformer.Transformer"))));
     transformMethodID = jni->GetMethodID(transformerClass, "transform", "(Ljava/lang/ClassLoader;Ljava/lang/String;Ljava/lang/Class;Ljava/security/ProtectionDomain;[B)[B");
 
-    jclass instrumentationClass = reinterpret_cast<jclass>(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.shtruz.externalfinalscounter.instrument.Instrumentation")));
-    jfieldID instrumentationInstanceFieldID = jni->GetStaticFieldID(instrumentationClass, "instance", "Lcom/shtruz/externalfinalscounter/instrument/Instrumentation;");
+    jclass instrumentationClass = reinterpret_cast<jclass>(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.laz.binguslite.instrument.Instrumentation")));
+    jfieldID instrumentationInstanceFieldID = jni->GetStaticFieldID(instrumentationClass, "instance", "Lcom/laz/binguslite/instrument/Instrumentation;");
     jfieldID transformersFieldID = jni->GetFieldID(instrumentationClass, "transformers", "Ljava/util/List;");
 
     jobject instrumentationInstance = jni->GetStaticObjectField(instrumentationClass, instrumentationInstanceFieldID);

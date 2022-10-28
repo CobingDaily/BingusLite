@@ -24,6 +24,7 @@
     <ProjectGuid>{5f91b969-25b2-4675-ba90-3309e9b44eea}</ProjectGuid>
     <RootNamespace>ExternalFinalsCounterJARDLL</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>BingusLiteJARDLL</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -112,7 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Program Files\Eclipse Adoptium\jdk-8.0.332.9-hotspot\include;C:\Program Files\Eclipse Adoptium\jdk-8.0.332.9-hotspot\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\Java\jdk1.8.0_291\include\win32;C:\Program Files\Java\jdk1.8.0_291\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,13 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="com_shtruz_externalfinalscounter_ExternalFinalsCounter.h" />
-    <ClInclude Include="com_shtruz_externalfinalscounter_instrument_Instrumentation.h" />
+    <ClInclude Include="com_laz_binguslite_BingusLite.h" />
+    <ClInclude Include="com_laz_binguslite_instrument_Instrumentation.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ExternalFinalsCounter.cpp" />
+    <ClCompile Include="BingusLite.cpp" />
     <ClCompile Include="Instrumentation.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
