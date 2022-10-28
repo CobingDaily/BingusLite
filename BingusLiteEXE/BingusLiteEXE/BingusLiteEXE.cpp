@@ -147,27 +147,27 @@ int main()
 {
 	std::cout << "Attempting to inject" << std::endl;
 
-	const char* dll = "ExternalFinalsCounterDLL.dll";
-	const char* jar = "ExternalFinalsCounterJAR.jar";
-	const char* jarDLL = "ExternalFinalsCounterJARDLL.dll";
+	const char* dll = "BingusLiteDLL.dll";
+	const char* jar = "BingusLiteJAR.jar";
+	const char* jarDLL = "BingusLiteJARDLL.dll";
 
 	if (GetFileAttributesA(dll) == INVALID_FILE_ATTRIBUTES)
 	{
-		std::cout << "ExternalFinalsCounterDLL.dll not found in the current folder" << std::endl;
+		std::cout << "BingusLiteDLL.dll not found in the current folder" << std::endl;
 		system("pause");
 		return 0;
 	}
 
 	if (GetFileAttributesA(jar) == INVALID_FILE_ATTRIBUTES)
 	{
-		std::cout << "ExternalFinalsCounterJAR.jar not found in the current folder" << std::endl;
+		std::cout << "BingusLiteJAR.jar not found in the current folder" << std::endl;
 		system("pause");
 		return 0;
 	}
 
 	if (GetFileAttributesA(jarDLL) == INVALID_FILE_ATTRIBUTES)
 	{
-		std::cout << "ExternalFinalsCounterJARDLL.dll not found in the current folder" << std::endl;
+		std::cout << "BingusLiteJARDLL.dll not found in the current folder" << std::endl;
 		system("pause");
 		return 0;
 	}
