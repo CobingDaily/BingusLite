@@ -1,9 +1,9 @@
 #include "pch.h"
-#include "ExternalFinalsCounter.h"
+#include "BingusLite.h"
 
 DWORD WINAPI inject(LPVOID hModule)
 {
-    ExternalFinalsCounter(reinterpret_cast<HMODULE>(hModule));
+    BingusLite(reinterpret_cast<HMODULE>(hModule));
 
     return 0;
 }

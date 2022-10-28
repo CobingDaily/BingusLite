@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "ExternalFinalsCounter.h"
+#include "BingusLite.h"
 
-ExternalFinalsCounter::ExternalFinalsCounter(HMODULE hModule)
+BingusLite::BingusLite(HMODULE hModule)
 {
 	if (!attach())
 	{
@@ -24,7 +24,7 @@ ExternalFinalsCounter::ExternalFinalsCounter(HMODULE hModule)
 	FreeLibraryAndExitThread(hModule, 0);
 }
 
-bool ExternalFinalsCounter::attach()
+bool BingusLite::attach()
 {
 	HMODULE jvmDLL = GetModuleHandle(L"jvm.dll");
 	if (!jvmDLL)
@@ -71,7 +71,7 @@ bool ExternalFinalsCounter::attach()
 	return true;
 }
 
-bool ExternalFinalsCounter::load(HMODULE hModule)
+bool BingusLite::load(HMODULE hModule)
 {
 	jclass urlClassLoaderClass = jni->FindClass("java/net/URLClassLoader");
 	jmethodID addURLMethodID = jni->GetMethodID(urlClassLoaderClass, "addURL", "(Ljava/net/URL;)V");
@@ -100,8 +100,8 @@ bool ExternalFinalsCounter::load(HMODULE hModule)
 
 	jstring jpath = jni->NewStringUTF(path);
 
-	jobject externalFinalsCounterJARFile = jni->NewObject(fileClass, fileConstructorMethodID, jpath, jni->NewStringUTF("ExternalFinalsCounterJAR.jar"));
-	jobject uri = jni->CallObjectMethod(externalFinalsCounterJARFile, toURIMethodID);
+	jobject bingusLiteJARFile = jni->NewObject(fileClass, fileConstructorMethodID, jpath, jni->NewStringUTF("BingusLiteJAR.jar"));
+	jobject uri = jni->CallObjectMethod(bingusLiteJARFile, toURIMethodID);
 	jobject url = jni->CallObjectMethod(uri, toURLMethodID);
 
 	if (jni->ExceptionCheck())
@@ -116,13 +116,13 @@ bool ExternalFinalsCounter::load(HMODULE hModule)
 	jclass classLoaderClass = jni->FindClass("java/lang/ClassLoader");
 	jmethodID loadClassMethodID = jni->GetMethodID(classLoaderClass, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
 
-	jclass externalFinalsCounterClass = reinterpret_cast<jclass>(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.shtruz.externalfinalscounter.ExternalFinalsCounter")));
-	jmethodID externalFinalsCounterConstructorMethodID = jni->GetMethodID(externalFinalsCounterClass, "<init>", "()V");
-	jmethodID externalFinalsCounterInitializeMethodID = jni->GetMethodID(externalFinalsCounterClass, "initialize", "(Lcom/shtruz/externalfinalscounter/Client;Ljava/lang/ClassLoader;Ljava/lang/String;)Z");
+	jclass bingusLiteClass = reinterpret_cast<jclass>(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.laz.binguslite.BingusLite")));
+	jmethodID bingusLiteConstructorMethodID = jni->GetMethodID(bingusLiteClass, "<init>", "()V");
+	jmethodID bingusLiteInitializeMethodID = jni->GetMethodID(bingusLiteClass, "initialize", "(Lcom/laz/binguslite/Client;Ljava/lang/ClassLoader;Ljava/lang/String;)Z");
 
-	jclass clientClass = reinterpret_cast<jclass>(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.shtruz.externalfinalscounter.Client")));
-	jfieldID vanillaFieldID = jni->GetStaticFieldID(clientClass, "VANILLA", "Lcom/shtruz/externalfinalscounter/Client;");
-	jfieldID lunarFieldID = jni->GetStaticFieldID(clientClass, "LUNAR", "Lcom/shtruz/externalfinalscounter/Client;");
+	jclass clientClass = reinterpret_cast<jclass>(jni->CallObjectMethod(classLoader, loadClassMethodID, jni->NewStringUTF("com.laz.binguslite.Client")));
+	jfieldID vanillaFieldID = jni->GetStaticFieldID(clientClass, "VANILLA", "Lcom/laz/binguslite/Client;");
+	jfieldID lunarFieldID = jni->GetStaticFieldID(clientClass, "LUNAR", "Lcom/laz/binguslite/Client;");
 
 	jobject client = nullptr;
 
@@ -135,9 +135,9 @@ bool ExternalFinalsCounter::load(HMODULE hModule)
 		client = jni->GetStaticObjectField(clientClass, lunarFieldID);
 	}
 
-	jobject externalFinalsCounter = jni->NewObject(externalFinalsCounterClass, externalFinalsCounterConstructorMethodID);
+	jobject bingusLite = jni->NewObject(bingusLiteClass, bingusLiteConstructorMethodID);
 
-	if (!jni->CallBooleanMethod(externalFinalsCounter, externalFinalsCounterInitializeMethodID, client, classLoader, jpath))
+	if (!jni->CallBooleanMethod(bingusLite, bingusLiteInitializeMethodID, client, classLoader, jpath))
 	{
 		return false;
 	}

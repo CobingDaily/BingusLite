@@ -7,7 +7,7 @@ class Utils
 public:
 	static void messageBox(const char* message)
 	{
-		MessageBoxA(nullptr, message, "ExternalFinalsCounter", MB_OK);
+		MessageBoxA(nullptr, message, "BingusLite", MB_OK);
 	}
 
 	static jobject getThreadGroupClassLoader(JNIEnv* jni)

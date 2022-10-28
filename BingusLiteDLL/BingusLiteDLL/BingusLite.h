@@ -2,10 +2,10 @@
 
 #include "pch.h"
 
-class ExternalFinalsCounter
+class BingusLite
 {
 public:
-	ExternalFinalsCounter(HMODULE hModule);
+	BingusLite(HMODULE hModule);
 private:
 	typedef jint(JNICALL *GetCreatedJavaVMs)(JavaVM**, jsize, jsize*);
 
