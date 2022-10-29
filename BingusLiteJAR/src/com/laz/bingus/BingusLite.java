@@ -73,7 +73,7 @@ public class BingusLite {
         }
 
         try {
-            System.load(new File(workingDirectory, "BingusLite.dll").getAbsolutePath());
+            System.load(new File(workingDirectory, "BingusLiteJARDLL.dll").getAbsolutePath());
         } catch (SecurityException | UnsatisfiedLinkError | NullPointerException exception) {
             JOptionPane.showMessageDialog(null, "Failed to load JAR DLL");
             exception.printStackTrace();
