@@ -3,15 +3,12 @@ package com.laz.binguslite;
 import com.google.gson.Gson;
 import com.laz.binguslite.command.CommandManager;
 import com.laz.binguslite.events.Event;
-import com.laz.binguslite.events.listeners.EventRenderTick;
+import com.laz.binguslite.events.listeners.EventJump;
 import com.laz.binguslite.events.listeners.EventTick;
 import com.laz.binguslite.finalscounter.ChatMessageParser;
 import com.laz.binguslite.finalscounter.FinalsCounterRenderer;
 import com.laz.binguslite.instrument.Instrumentation;
-import com.laz.binguslite.instrument.transformer.transformers.EntityPlayerSPTransformer;
-import com.laz.binguslite.instrument.transformer.transformers.GuiNewChatTransformer;
-import com.laz.binguslite.instrument.transformer.transformers.GuiPlayerTabOverlayTransformer;
-import com.laz.binguslite.instrument.transformer.transformers.MinecraftTransformer;
+import com.laz.binguslite.instrument.transformer.transformers.*;
 import com.laz.binguslite.mapping.Mapping;
 import com.laz.binguslite.mapping.mappings.Lunar;
 import com.laz.binguslite.mapping.mappings.Vanilla;
@@ -90,11 +87,13 @@ public class BingusLite {
 
         instrumentation.addTransformer(new GuiNewChatTransformer());
         instrumentation.addTransformer(new EntityPlayerSPTransformer());
+        instrumentation.addTransformer(new EntityPlayerTransformer());
         instrumentation.addTransformer(new MinecraftTransformer(client));
         instrumentation.addTransformer(new GuiPlayerTabOverlayTransformer(client));
 
         if (!instrumentation.retransformClass(guiNewChatClass)
                 || !instrumentation.retransformClass(entityPlayerSPClass)
+                || !instrumentation.retransformClass(entityPlayerClass)
                 || !instrumentation.retransformClass(minecraftClass)
                 || !instrumentation.retransformClass(guiPlayerTabOverlayClass)) {
             JOptionPane.showMessageDialog(null, "Failed to retransform classes");
@@ -125,19 +124,10 @@ public class BingusLite {
     }
 
     public void onEvent(Event event) {
-        if (event instanceof EventTick) {
+        if (event instanceof EventJump) {
             try {
                 if (thePlayerField.get(getMinecraftMethod.invoke(null)) != null) {
-                    instance.addChatComponentText("Tick Event " + event.getType());
-                }
-            } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | InstantiationException e) {
-                e.printStackTrace();
-            }
-        }
-        if (event instanceof EventRenderTick) {
-            try {
-                if (thePlayerField.get(getMinecraftMethod.invoke(null)) != null) {
-                    instance.addChatComponentText("Render Event " + event.getType());
+                    instance.addChatComponentText("Jump Event " + event.getType());
                 }
             } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | InstantiationException e) {
                 e.printStackTrace();

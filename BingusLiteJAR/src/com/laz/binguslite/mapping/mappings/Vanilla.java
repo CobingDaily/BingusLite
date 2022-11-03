@@ -63,6 +63,7 @@ public class Vanilla extends Mapping {
 
         names.get("wn").setLeft("wn");
         names.get("wn").getRight().replace("b(Leu;)V", "b");
+        names.get("wn").getRight().replace("bF()V", "bF");
 
         names.get("avt").setLeft("avt");
         names.get("avt").getRight().replace("a(Leu;)V", "a");

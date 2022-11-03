@@ -62,12 +62,14 @@ public class Mappings {
 
     public static Class<?> entityPlayerClass;
     public static Method addChatComponentMessageMethod;
+    public static Method jumpMethod;
 
     public static Class<?> guiNewChatClass;
     public static Method printChatMessageMethod;
 
     public static Class<?> entityPlayerSPClass;
     public static Method sendChatMessageMethod;
+
 
     public static Class<?> entityRendererClass;
     public static Method updateCameraAndRenderMethod;

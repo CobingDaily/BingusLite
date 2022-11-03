@@ -63,6 +63,7 @@ public class Lunar extends Mapping {
 
         names.get("wn").setLeft("net.minecraft.entity.player.EntityPlayer");
         names.get("wn").getRight().replace("b(Leu;)V", "addChatComponentMessage");
+        names.get("wn").getRight().replace("bF()V", "jump");
 
         names.get("avt").setLeft("net.minecraft.client.gui.GuiNewChat");
         names.get("avt").getRight().replace("a(Leu;)V", "printChatMessage");

@@ -148,6 +148,7 @@ public abstract class Mapping {
 
             entityPlayerClass = Class.forName(names.get("wn").getLeft());
             addChatComponentMessageMethod = entityPlayerClass.getDeclaredMethod(names.get("wn").getRight().get("b(Leu;)V"), iChatComponentClass);
+            jumpMethod = entityPlayerClass.getDeclaredMethod(names.get("wn").getRight().get("bF()V"));
 
             guiNewChatClass = Class.forName(names.get("avt").getLeft());
             printChatMessageMethod = guiNewChatClass.getDeclaredMethod(names.get("avt").getRight().get("a(Leu;)V"), iChatComponentClass);
