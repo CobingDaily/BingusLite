@@ -45,7 +45,10 @@ bool getPid()
 	if (pid == 0)
 	{
 		std::cout << "No Minecraft found" << std::endl;
-		return false;
+	}
+	while (pid == 0) 
+	{
+		EnumWindows(EnumWindowsProc, 0);
 	}
 
 	return true;

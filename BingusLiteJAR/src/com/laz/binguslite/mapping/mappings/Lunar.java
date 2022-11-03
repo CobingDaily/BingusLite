@@ -33,6 +33,7 @@ public class Lunar extends Mapping {
         names.get("ave").getRight().replace("A()Lave;", "getMinecraft");
         names.get("ave").getRight().replace("D()Lbde;", "getCurrentServerData");
         names.get("ave").getRight().replace("av()V", "runGameLoop");
+        names.get("ave").getRight().replace("s()V", "runTick");
 
         names.get("adm").setLeft("net.minecraft.world.World");
         names.get("adm").getRight().replace("Z()Lauo;", "getScoreboard");

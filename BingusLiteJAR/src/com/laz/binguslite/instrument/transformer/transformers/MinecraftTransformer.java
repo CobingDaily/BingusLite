@@ -1,6 +1,9 @@
 package com.laz.binguslite.instrument.transformer.transformers;
 
+import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.Client;
+import com.laz.binguslite.events.EventType;
+import com.laz.binguslite.events.listeners.EventTick;
 import com.laz.binguslite.instrument.transformer.CustomClassWriter;
 import com.laz.binguslite.instrument.transformer.Transformer;
 import org.objectweb.asm.ClassReader;
@@ -65,8 +68,9 @@ public class MinecraftTransformer implements Transformer {
                             }
                         }
                     }
-
-                    break;
+                }
+                if (method.name.equals(runTickMethod.getName()) && method.desc.equals("()V")) {
+                    method.instructions.insert(onTickPre());
                 }
             }
             ClassWriter classWriter = new CustomClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
@@ -80,9 +84,44 @@ public class MinecraftTransformer implements Transformer {
     private InsnList onRender() {
         InsnList insnList = new InsnList();
 
+        insnList.add(new TypeInsnNode(NEW, "com/laz/binguslite/events/listeners/EventRenderTick"));
+        insnList.add(new InsnNode(DUP));
+        insnList.add(new MethodInsnNode(INVOKESPECIAL, "com/laz/binguslite/events/listeners/EventRenderTick", "<init>", "()V", false));
+        insnList.add(new VarInsnNode(ASTORE, 1));
+
         insnList.add(new FieldInsnNode(GETSTATIC, "com/laz/binguslite/BingusLite", "instance", "Lcom/laz/binguslite/BingusLite;"));
-        insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/BingusLite", "onRender", "()V", false));
+        insnList.add(new VarInsnNode(ALOAD, 1));
+        insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/BingusLite", "onEvent", "(Lcom/laz/binguslite/events/Event;)V", false));
 
         return insnList;
+    }
+
+    private InsnList onTickPre() {
+        InsnList insnList = new InsnList();
+
+        insnList.add(new TypeInsnNode(NEW, "com/laz/binguslite/events/listeners/EventTick"));
+        insnList.add(new InsnNode(DUP));
+        insnList.add(new MethodInsnNode(INVOKESPECIAL, "com/laz/binguslite/events/listeners/EventTick", "<init>", "()V", false));
+        insnList.add(new VarInsnNode(ASTORE, 1));
+
+        insnList.add(new VarInsnNode(ALOAD, 1));
+        insnList.add(new FieldInsnNode(GETSTATIC, "com/laz/binguslite/events/EventType", "PRE", "Lcom/laz/binguslite/events/EventType;"));
+        insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/events/listeners/EventTick", "setType", "(Lcom/laz/binguslite/events/EventType;)V", false));
+
+        insnList.add(new FieldInsnNode(GETSTATIC, "com/laz/binguslite/BingusLite", "instance", "Lcom/laz/binguslite/BingusLite;"));
+        insnList.add(new VarInsnNode(ALOAD, 1));
+        insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/BingusLite", "onEvent", "(Lcom/laz/binguslite/events/Event;)V", false));
+
+        return insnList;
+
+    }
+
+    private InsnList onTick() {
+        EventTick eventTick = new EventTick();
+        eventTick.setType(EventType.PRE);
+
+        BingusLite.instance.onEvent(eventTick);
+
+        return new InsnList();
     }
 }

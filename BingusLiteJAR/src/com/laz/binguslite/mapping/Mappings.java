@@ -32,6 +32,7 @@ public class Mappings {
     public static Method getMinecraftMethod;
     public static Method getCurrentServerDataMethod;
     public static Method runGameLoopMethod;
+    public static Method runTickMethod;
 
     public static Class<?> worldClass;
     public static Method getScoreboardMethod;

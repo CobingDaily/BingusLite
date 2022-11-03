@@ -324,9 +324,6 @@ public class ChatMessageParser {
 
                         allPlayers.put(killer, allPlayers.getOrDefault(killer, 0) + 1);
                     }
-
-                    bingusLite.getFinalsCounterRenderer().update();
-
                     return;
                 }
             }

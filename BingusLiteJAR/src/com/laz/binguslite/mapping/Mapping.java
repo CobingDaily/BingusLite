@@ -39,6 +39,7 @@ public abstract class Mapping {
         names.get("ave").getRight().put("A()Lave;", null);
         names.get("ave").getRight().put("D()Lbde;", null);
         names.get("ave").getRight().put("av()V", null);
+        names.get("ave").getRight().put("s()V", null);
 
         names.put("adm", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
         names.get("adm").getRight().put("Z()Lauo;", null);
@@ -117,6 +118,7 @@ public abstract class Mapping {
             getMinecraftMethod = minecraftClass.getDeclaredMethod(names.get("ave").getRight().get("A()Lave;"));
             getCurrentServerDataMethod = minecraftClass.getDeclaredMethod(names.get("ave").getRight().get("D()Lbde;"));
             runGameLoopMethod = minecraftClass.getDeclaredMethod(names.get("ave").getRight().get("av()V"));
+            runTickMethod = minecraftClass.getDeclaredMethod(names.get("ave").getRight().get("s()V"));
 
             worldClass = Class.forName(names.get("adm").getLeft());
             getScoreboardMethod = worldClass.getDeclaredMethod(names.get("adm").getRight().get("Z()Lauo;"));

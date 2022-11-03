@@ -33,6 +33,7 @@ public class Vanilla extends Mapping {
         names.get("ave").getRight().replace("A()Lave;", "A");
         names.get("ave").getRight().replace("D()Lbde;", "D");
         names.get("ave").getRight().replace("av()V", "av");
+        names.get("ave").getRight().replace("s()V", "s");
 
         names.get("adm").setLeft("adm");
         names.get("adm").getRight().replace("Z()Lauo;", "Z");

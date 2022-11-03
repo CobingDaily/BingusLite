@@ -28,6 +28,8 @@ public class FinalsCounterRenderer {
 
     public void render() {
         try {
+            update();
+
             Object minecraft = getMinecraftMethod.invoke(null);
 
             boolean inGameHasFocus = inGameHasFocusField.getBoolean(minecraft);
@@ -35,10 +37,7 @@ public class FinalsCounterRenderer {
             Object gameSettings = gameSettingsField.get(minecraft);
             boolean showDebugInfo = showDebugInfoField.getBoolean(gameSettings);
 
-            if (bingusLite.getConfig().displayFinalsCounter
-                    && !bingusLite.getChatMessageParser().getAllPlayers().isEmpty()
-                    && inGameHasFocus
-                    && !showDebugInfo) {
+            if (bingusLite.getConfig().displayFinalsCounter && inGameHasFocus && !showDebugInfo) {
                 float x = bingusLite.getConfig().finalsCounterX;
                 float y = bingusLite.getConfig().finalsCounterY;
 
@@ -53,10 +52,10 @@ public class FinalsCounterRenderer {
 
                 Object fontRendererObj = fontRendererObjField.get(minecraft);
 
-                drawStringMethod.invoke(fontRendererObj, blue, x, y, -1, false);
-                drawStringMethod.invoke(fontRendererObj, green, x, y + 10, -1, false);
-                drawStringMethod.invoke(fontRendererObj, red, x, y + 20, -1, false);
-                drawStringMethod.invoke(fontRendererObj, yellow, x, y + 30, -1, false);
+                drawStringMethod.invoke(fontRendererObj, blue, x, y, -1, true);
+                drawStringMethod.invoke(fontRendererObj, green, x, y + 10, -1, true);
+                drawStringMethod.invoke(fontRendererObj, red, x, y + 20, -1, true);
+                drawStringMethod.invoke(fontRendererObj, yellow, x, y + 30, -1, true);
 
                 popMatrixMethod.invoke(null);
             }

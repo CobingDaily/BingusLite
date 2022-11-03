@@ -2,6 +2,9 @@ package com.laz.binguslite;
 
 import com.google.gson.Gson;
 import com.laz.binguslite.command.CommandManager;
+import com.laz.binguslite.events.Event;
+import com.laz.binguslite.events.listeners.EventRenderTick;
+import com.laz.binguslite.events.listeners.EventTick;
 import com.laz.binguslite.finalscounter.ChatMessageParser;
 import com.laz.binguslite.finalscounter.FinalsCounterRenderer;
 import com.laz.binguslite.instrument.Instrumentation;
@@ -121,8 +124,25 @@ public class BingusLite {
         return false;
     }
 
-    public void onRender() {
-        finalsCounterRenderer.render();
+    public void onEvent(Event event) {
+        if (event instanceof EventTick) {
+            try {
+                if (thePlayerField.get(getMinecraftMethod.invoke(null)) != null) {
+                    instance.addChatComponentText("Tick Event " + event.getType());
+                }
+            } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
+        if (event instanceof EventRenderTick) {
+            try {
+                if (thePlayerField.get(getMinecraftMethod.invoke(null)) != null) {
+                    instance.addChatComponentText("Render Event " + event.getType());
+                }
+            } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public ChatMessageParser getChatMessageParser() {
