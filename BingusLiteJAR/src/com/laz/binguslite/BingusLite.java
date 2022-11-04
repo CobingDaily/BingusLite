@@ -12,6 +12,7 @@ import com.laz.binguslite.instrument.transformer.transformers.*;
 import com.laz.binguslite.mapping.Mapping;
 import com.laz.binguslite.mapping.mappings.Lunar;
 import com.laz.binguslite.mapping.mappings.Vanilla;
+import com.laz.binguslite.utils.PlayerUtil;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
@@ -124,15 +125,7 @@ public class BingusLite {
     }
 
     public void onEvent(Event event) {
-        if (event instanceof EventJump) {
-            try {
-                if (thePlayerField.get(getMinecraftMethod.invoke(null)) != null) {
-                    instance.addChatComponentText("Jump Event " + event.getType());
-                }
-            } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | InstantiationException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     public ChatMessageParser getChatMessageParser() {
@@ -162,17 +155,5 @@ public class BingusLite {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-    }
-
-    public void addChatComponentText(String text) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
-        Object minecraft = getMinecraftMethod.invoke(null);
-
-        Object thePlayer = thePlayerField.get(minecraft);
-
-        Object chatComponentText = chatComponentTextClass
-                .getDeclaredConstructor(String.class)
-                .newInstance(text);
-
-        addChatComponentMessageMethod.invoke(thePlayer, chatComponentText);
     }
 }

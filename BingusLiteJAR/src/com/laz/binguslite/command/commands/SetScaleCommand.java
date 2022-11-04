@@ -2,6 +2,7 @@ package com.laz.binguslite.command.commands;
 
 import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.command.Command;
+import com.laz.binguslite.utils.PlayerUtil;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -34,15 +35,8 @@ public class SetScaleCommand implements Command {
 
         bingusLite.saveConfig();
 
-        try {
-            String output = "Set scale to " + scale + "%";
+        String output = "Set scale to " + scale + "%";
 
-            bingusLite.addChatComponentText(output);
-        } catch (IllegalAccessException
-                 | InvocationTargetException
-                 | NoSuchMethodException
-                 | InstantiationException exception) {
-            exception.printStackTrace();
-        }
+        PlayerUtil.addChatComponentMessage(output);
     }
 }

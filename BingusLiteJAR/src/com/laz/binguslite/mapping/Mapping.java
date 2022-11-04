@@ -69,6 +69,7 @@ public abstract class Mapping {
 
         names.put("wn", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
         names.get("wn").getRight().put("b(Leu;)V", null);
+        names.get("wn").getRight().put("bF()V", null);
 
         names.put("avt", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
         names.get("avt").getRight().put("a(Leu;)V", null);

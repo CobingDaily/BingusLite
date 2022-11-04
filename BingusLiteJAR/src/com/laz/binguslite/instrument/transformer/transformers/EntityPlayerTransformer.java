@@ -1,16 +1,19 @@
 package com.laz.binguslite.instrument.transformer.transformers;
 
+import com.laz.binguslite.BingusLite;
+import com.laz.binguslite.events.listeners.EventJump;
 import com.laz.binguslite.instrument.transformer.CustomClassWriter;
 import com.laz.binguslite.instrument.transformer.Transformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.*;
 
+import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 import java.security.ProtectionDomain;
 import java.util.List;
 
-import static com.laz.binguslite.mapping.Mappings.entityPlayerClass;
-import static com.laz.binguslite.mapping.Mappings.jumpMethod;
+import static com.laz.binguslite.mapping.Mappings.*;
 import static org.objectweb.asm.Opcodes.*;
 
 public class EntityPlayerTransformer implements Transformer {

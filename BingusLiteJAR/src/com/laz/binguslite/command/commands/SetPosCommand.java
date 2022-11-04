@@ -2,6 +2,7 @@ package com.laz.binguslite.command.commands;
 
 import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.command.Command;
+import com.laz.binguslite.utils.PlayerUtil;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -37,15 +38,8 @@ public class SetPosCommand implements Command {
 
         bingusLite.saveConfig();
 
-        try {
-            String output = "Set pos to X: " + x + ", Y: " + y;
+        String output = "Set pos to X: " + x + ", Y: " + y;
 
-            bingusLite.addChatComponentText(output);
-        } catch (IllegalAccessException
-                 | InvocationTargetException
-                 | NoSuchMethodException
-                 | InstantiationException exception) {
-            exception.printStackTrace();
-        }
+        PlayerUtil.addChatComponentMessage(output);
     }
 }

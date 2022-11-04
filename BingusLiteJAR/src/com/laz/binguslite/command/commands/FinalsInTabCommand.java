@@ -2,6 +2,7 @@ package com.laz.binguslite.command.commands;
 
 import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.command.Command;
+import com.laz.binguslite.utils.PlayerUtil;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -17,15 +18,8 @@ public class FinalsInTabCommand implements Command {
 
         bingusLite.saveConfig();
 
-        try {
-            String output = (bingusLite.getConfig().finalsInTab ? "Enabled" : "Disabled") + " finals in tab";
+        String output = (bingusLite.getConfig().finalsInTab ? "Enabled" : "Disabled") + " finals in tab";
 
-            bingusLite.addChatComponentText(output);
-        } catch (IllegalAccessException
-                 | InvocationTargetException
-                 | NoSuchMethodException
-                 | InstantiationException exception) {
-            exception.printStackTrace();
-        }
+        PlayerUtil.addChatComponentMessage(output);
     }
 }
