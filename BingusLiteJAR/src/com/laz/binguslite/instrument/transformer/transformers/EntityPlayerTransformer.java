@@ -4,8 +4,10 @@ import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.events.listeners.EventJump;
 import com.laz.binguslite.instrument.transformer.CustomClassWriter;
 import com.laz.binguslite.instrument.transformer.Transformer;
+import com.laz.binguslite.utils.PlayerUtil;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
 import javax.swing.*;
@@ -44,11 +46,25 @@ public class EntityPlayerTransformer implements Transformer {
         insnList.add(new TypeInsnNode(NEW, "com/laz/binguslite/events/listeners/EventJump"));
         insnList.add(new InsnNode(DUP));
         insnList.add(new MethodInsnNode(INVOKESPECIAL, "com/laz/binguslite/events/listeners/EventJump", "<init>", "()V", false));
-        insnList.add(new VarInsnNode(ASTORE, 2));
+        insnList.add(new VarInsnNode(ASTORE, 1));
+
+        insnList.add(new VarInsnNode(ALOAD, 0));
+        insnList.add(new MethodInsnNode(INVOKESTATIC, "com/laz/binguslite/utils/PlayerUtil", "thePlayer", "()Ljava/lang/Object;", false));
+        LabelNode ifacmpne = new LabelNode();
+        insnList.add(new JumpInsnNode(IF_ACMPNE, ifacmpne));
 
         insnList.add(new FieldInsnNode(GETSTATIC, "com/laz/binguslite/BingusLite", "instance", "Lcom/laz/binguslite/BingusLite;"));
-        insnList.add(new VarInsnNode(ALOAD, 2));
+        insnList.add(new VarInsnNode(ALOAD, 1));
         insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/BingusLite", "onEvent", "(Lcom/laz/binguslite/events/Event;)V", false));
+        insnList.add(ifacmpne);
+
+        insnList.add(new VarInsnNode(ALOAD, 1));
+        insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/events/listeners/EventJump", "isCancelled", "()Z", false));
+        LabelNode ifeq = new LabelNode();
+        insnList.add(new JumpInsnNode(IFEQ, ifeq));
+
+        insnList.add(new InsnNode(RETURN));
+        insnList.add(ifeq);
 
         return insnList;
     }

@@ -125,7 +125,7 @@ public class BingusLite {
     }
 
     public void onEvent(Event event) {
-
+        
     }
 
     public ChatMessageParser getChatMessageParser() {

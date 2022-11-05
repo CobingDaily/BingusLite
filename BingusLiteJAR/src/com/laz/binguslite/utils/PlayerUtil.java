@@ -5,11 +5,12 @@ import static com.laz.binguslite.mapping.Mappings.*;
 
 public class PlayerUtil {
 
-    public static void addChatComponentMessage(String text) {
+    public static Object getMinecraft() {
         try {
-            Object chatComponentText = chatComponentTextClass.getDeclaredConstructor(String.class).newInstance(text);
-            addChatComponentMessageMethod.invoke(thePlayer(), chatComponentText);
-        } catch (Exception ignored) { }
+            return getMinecraftMethod.invoke(null);
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 
     public static Object thePlayer() {
@@ -20,11 +21,24 @@ public class PlayerUtil {
         }
     }
 
-    public static Object getMinecraft() {
+    public static Object theWorld() {
         try {
-            return getMinecraftMethod.invoke(null);
+            return theWorldField.get(getMinecraft());
         } catch (Exception ignored) {
             return null;
         }
+    }
+
+    public static void addChatComponentMessage(String text) {
+        try {
+            Object chatComponentText = chatComponentTextClass.getDeclaredConstructor(String.class).newInstance(text);
+            addChatComponentMessageMethod.invoke(thePlayer(), chatComponentText);
+        } catch (Exception ignored) { }
+    }
+
+    public static void jump() {
+        try {
+            jumpMethod.invoke(thePlayer());
+        } catch (Exception ignored) { }
     }
 }
