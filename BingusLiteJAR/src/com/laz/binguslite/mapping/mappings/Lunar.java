@@ -66,6 +66,12 @@ public class Lunar extends Mapping {
         names.get("wn").getRight().replace("bF()V", "jump");
 
         names.get("pk").setLeft("net.minecraft.entity.Entity");
+        names.get("pk").getMiddle().replace("v", "motionX");
+        names.get("pk").getMiddle().replace("w", "motionY");
+        names.get("pk").getMiddle().replace("x", "motionZ");
+        names.get("pk").getMiddle().replace("y", "rotationYaw");
+        names.get("pk").getMiddle().replace("z", "rotationPitch");
+        names.get("pk").getMiddle().replace("C", "onGround");
         names.get("pk").getRight().replace("d(DDD)V", "moveEntity");
 
         names.get("avt").setLeft("net.minecraft.client.gui.GuiNewChat");

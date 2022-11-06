@@ -130,7 +130,6 @@ public class BingusLite {
 
     public void onEvent(Event event) {
         if (event instanceof EventMove) {
-            EventMove eventMove = (EventMove) event;
 
         }
     }

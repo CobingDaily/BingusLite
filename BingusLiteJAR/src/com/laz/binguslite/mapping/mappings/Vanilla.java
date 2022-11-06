@@ -66,6 +66,12 @@ public class Vanilla extends Mapping {
         names.get("wn").getRight().replace("bF()V", "bF");
 
         names.get("pk").setLeft("pk");
+        names.get("pk").getMiddle().replace("v", "v");
+        names.get("pk").getMiddle().replace("w", "w");
+        names.get("pk").getMiddle().replace("x", "x");
+        names.get("pk").getMiddle().replace("y", "y");
+        names.get("pk").getMiddle().replace("z", "z");
+        names.get("pk").getMiddle().replace("C", "C");
         names.get("pk").getRight().replace("d(DDD)V", "d");
 
         names.get("avt").setLeft("avt");

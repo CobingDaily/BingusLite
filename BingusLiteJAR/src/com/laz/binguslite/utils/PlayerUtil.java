@@ -41,4 +41,50 @@ public class PlayerUtil {
             jumpMethod.invoke(thePlayer());
         } catch (Exception ignored) { }
     }
+
+    public static double motionX() {
+        try {
+            return (double) motionXField.get(thePlayer());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+    public static double motionY() {
+        try {
+            return (double) motionYField.get(thePlayer());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+    public static double motionZ() {
+        try {
+            return (double) motionZField.get(thePlayer());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+
+    public static float rotationYaw() {
+        try {
+            return (float) rotationYawField.get(thePlayer());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+
+    public static float rotationPitch() {
+        try {
+            return (float) rotationPitchField.get(thePlayer());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+
+    public static boolean onGround() {
+        try {
+            return (boolean) onGroundField.get(thePlayer());
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
 }

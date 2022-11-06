@@ -72,6 +72,12 @@ public abstract class Mapping {
         names.get("wn").getRight().put("bF()V", null);
 
         names.put("pk", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
+        names.get("pk").getMiddle().put("v", null);
+        names.get("pk").getMiddle().put("w", null);
+        names.get("pk").getMiddle().put("x", null);
+        names.get("pk").getMiddle().put("y", null);
+        names.get("pk").getMiddle().put("z", null);
+        names.get("pk").getMiddle().put("C", null);
         names.get("pk").getRight().put("d(DDD)V", null);
 
         names.put("avt", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
@@ -155,6 +161,12 @@ public abstract class Mapping {
             jumpMethod = entityPlayerClass.getDeclaredMethod(names.get("wn").getRight().get("bF()V"));
 
             entityClass = Class.forName(names.get("pk").getLeft());
+            motionXField = entityClass.getDeclaredField(names.get("pk").getMiddle().get("v"));
+            motionYField = entityClass.getDeclaredField(names.get("pk").getMiddle().get("w"));
+            motionZField = entityClass.getDeclaredField(names.get("pk").getMiddle().get("x"));
+            rotationYawField = entityClass.getDeclaredField(names.get("pk").getMiddle().get("y"));
+            rotationPitchField = entityClass.getDeclaredField(names.get("pk").getMiddle().get("z"));
+            onGroundField = entityClass.getDeclaredField(names.get("pk").getMiddle().get("C"));
             moveEntityMethod = entityClass.getDeclaredMethod(names.get("pk").getRight().get("d(DDD)V"), double.class, double.class, double.class);
 
             guiNewChatClass = Class.forName(names.get("avt").getLeft());
