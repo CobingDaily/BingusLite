@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.laz.binguslite.command.CommandManager;
 import com.laz.binguslite.events.Event;
 import com.laz.binguslite.events.listeners.EventJump;
+import com.laz.binguslite.events.listeners.EventMotion;
+import com.laz.binguslite.events.listeners.EventMove;
 import com.laz.binguslite.events.listeners.EventTick;
 import com.laz.binguslite.finalscounter.ChatMessageParser;
 import com.laz.binguslite.finalscounter.FinalsCounterRenderer;
@@ -87,12 +89,14 @@ public class BingusLite {
         }
 
         instrumentation.addTransformer(new GuiNewChatTransformer());
+        instrumentation.addTransformer(new EntityTransformer());
         instrumentation.addTransformer(new EntityPlayerSPTransformer());
         instrumentation.addTransformer(new EntityPlayerTransformer());
         instrumentation.addTransformer(new MinecraftTransformer(client));
         instrumentation.addTransformer(new GuiPlayerTabOverlayTransformer(client));
 
         if (!instrumentation.retransformClass(guiNewChatClass)
+                || !instrumentation.retransformClass(entityClass)
                 || !instrumentation.retransformClass(entityPlayerSPClass)
                 || !instrumentation.retransformClass(entityPlayerClass)
                 || !instrumentation.retransformClass(minecraftClass)
@@ -125,7 +129,10 @@ public class BingusLite {
     }
 
     public void onEvent(Event event) {
-        
+        if (event instanceof EventMove) {
+            EventMove eventMove = (EventMove) event;
+
+        }
     }
 
     public ChatMessageParser getChatMessageParser() {

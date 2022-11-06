@@ -34,4 +34,44 @@ public class EventMove extends Event {
     public void setZ(double z) {
         this.z = z;
     }
+
+//    public void setSpeed(double moveSpeed) {
+//        setSpeed(moveSpeed, mc.thePlayer.rotationYaw, mc.thePlayer.movementInput.moveStrafe, mc.thePlayer.movementInput.moveForward);
+//    }
+//
+//    public void setSpeed(double moveSpeed, float pseudoYaw, double pseudoStrafe, double pseudoForward) {
+//        double forward = pseudoForward;
+//        double strafe = pseudoStrafe;
+//        float yaw = pseudoYaw;
+//
+//        if (forward != 0.0) {
+//            if (strafe > 0.0) {
+//                yaw += ((forward > 0.0) ? -45 : 45);
+//            } else if (strafe < 0.0) {
+//                yaw += ((forward > 0.0) ? 45 : -45);
+//            }
+//            strafe = 0.0F;
+//            if (forward > 0.0) {
+//                forward = 1F;
+//            } else if (forward < 0.0) {
+//                forward = -1F;
+//            }
+//        }
+//
+//        if (strafe > 0.0) {
+//            strafe = 1F;
+//        } else if (strafe < 0.0) {
+//            strafe = -1F;
+//        }
+//        double mx = Math.cos(Math.toRadians((yaw + 90.0F)));
+//        double mz = Math.sin(Math.toRadians((yaw + 90.0F)));
+//        double x = forward * moveSpeed * mx + strafe * moveSpeed * mz;
+//        double z = forward * moveSpeed * mz - strafe * moveSpeed * mx;
+//
+//        mc.thePlayer.motionX = x;
+//        mc.thePlayer.motionZ = z;
+//        setX(x);
+//        setZ(z);
+//
+//    }
 }

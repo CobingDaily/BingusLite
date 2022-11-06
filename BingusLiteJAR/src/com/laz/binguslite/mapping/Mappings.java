@@ -64,6 +64,15 @@ public class Mappings {
     public static Method addChatComponentMessageMethod;
     public static Method jumpMethod;
 
+    public static Class<?> entityClass;
+    public static Field motionX; // v
+    public static Field motionY; // w
+    public static Field motionZ; // x
+    public static Field rotationYawField; // y
+    public static Field rotationPitchField; // z
+    public static Field onGround; // C
+    public static Method moveEntityMethod;
+
     public static Class<?> guiNewChatClass;
     public static Method printChatMessageMethod;
 

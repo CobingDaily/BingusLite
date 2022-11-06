@@ -71,6 +71,9 @@ public abstract class Mapping {
         names.get("wn").getRight().put("b(Leu;)V", null);
         names.get("wn").getRight().put("bF()V", null);
 
+        names.put("pk", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
+        names.get("pk").getRight().put("d(DDD)V", null);
+
         names.put("avt", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
         names.get("avt").getRight().put("a(Leu;)V", null);
 
@@ -150,6 +153,9 @@ public abstract class Mapping {
             entityPlayerClass = Class.forName(names.get("wn").getLeft());
             addChatComponentMessageMethod = entityPlayerClass.getDeclaredMethod(names.get("wn").getRight().get("b(Leu;)V"), iChatComponentClass);
             jumpMethod = entityPlayerClass.getDeclaredMethod(names.get("wn").getRight().get("bF()V"));
+
+            entityClass = Class.forName(names.get("pk").getLeft());
+            moveEntityMethod = entityClass.getDeclaredMethod(names.get("pk").getRight().get("d(DDD)V"), double.class, double.class, double.class);
 
             guiNewChatClass = Class.forName(names.get("avt").getLeft());
             printChatMessageMethod = guiNewChatClass.getDeclaredMethod(names.get("avt").getRight().get("a(Leu;)V"), iChatComponentClass);
