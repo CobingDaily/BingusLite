@@ -14,6 +14,8 @@ import com.laz.binguslite.instrument.transformer.transformers.*;
 import com.laz.binguslite.mapping.Mapping;
 import com.laz.binguslite.mapping.mappings.Lunar;
 import com.laz.binguslite.mapping.mappings.Vanilla;
+import com.laz.binguslite.modules.Module;
+import com.laz.binguslite.modules.ghost.AutoClicker;
 import com.laz.binguslite.utils.PlayerUtil;
 
 import javax.swing.*;
@@ -24,6 +26,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.laz.binguslite.mapping.Mappings.*;
 
@@ -36,6 +40,8 @@ public class BingusLite {
     private File configFile;
     private Config config = new Config();
     private final Gson gson = new Gson();
+    public static Map<Class<? extends Module>, Module> modules = new HashMap<>();
+    public static Map<Class<? extends Module>, Module> backgroundModules = new HashMap<>();
 
     public BingusLite() {
         instance = this;
@@ -105,6 +111,8 @@ public class BingusLite {
             return false;
         }
 
+        modules.put(AutoClicker.class, new AutoClicker());
+
         return true;
     }
 
@@ -129,8 +137,17 @@ public class BingusLite {
     }
 
     public void onEvent(Event event) {
-        if (event instanceof EventMove) {
-
+        for (Module module : modules.values()) {
+            module.onBackground();
+            if (!module.isEnabled())
+                continue;
+            module.onEvent(event);
+        }
+        for (Module module : backgroundModules.values()) {
+            module.onBackground();
+            if (!module.isEnabled())
+                module.toggle();
+            module.onEvent(event);
         }
     }
 

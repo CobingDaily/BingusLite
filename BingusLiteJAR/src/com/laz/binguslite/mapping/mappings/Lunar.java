@@ -78,7 +78,14 @@ public class Lunar extends Mapping {
         names.get("avt").getRight().replace("a(Leu;)V", "printChatMessage");
 
         names.get("bew").setLeft("net.minecraft.client.entity.EntityPlayerSP");
+        names.get("bew").getMiddle().replace("b", "movementInput");
         names.get("bew").getRight().replace("e(Ljava/lang/String;)V", "sendChatMessage");
+
+        names.get("beu").setLeft("net.minecraft.util.MovementInput");
+        names.get("beu").getMiddle().replace("a", "moveStrafe");
+        names.get("beu").getMiddle().replace("b", "moveForward");
+        names.get("beu").getMiddle().replace("c", "jump");
+        names.get("beu").getMiddle().replace("d", "sneak");
 
         names.get("bfk").setLeft("net.minecraft.client.renderer.EntityRenderer");
         names.get("bfk").getRight().replace("a(FJ)V", "updateCameraAndRender");

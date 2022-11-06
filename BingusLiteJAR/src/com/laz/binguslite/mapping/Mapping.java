@@ -84,7 +84,14 @@ public abstract class Mapping {
         names.get("avt").getRight().put("a(Leu;)V", null);
 
         names.put("bew", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
+        names.get("bew").getMiddle().put("b", null);
         names.get("bew").getRight().put("e(Ljava/lang/String;)V", null);
+
+        names.put("beu", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
+        names.get("beu").getMiddle().put("a", null);
+        names.get("beu").getMiddle().put("b", null);
+        names.get("beu").getMiddle().put("c", null);
+        names.get("beu").getMiddle().put("d", null);
 
         names.put("bfk", new MutableTriple<>(null, new HashMap<>(), new HashMap<>()));
         names.get("bfk").getRight().put("a(FJ)V", null);
@@ -173,7 +180,14 @@ public abstract class Mapping {
             printChatMessageMethod = guiNewChatClass.getDeclaredMethod(names.get("avt").getRight().get("a(Leu;)V"), iChatComponentClass);
 
             entityPlayerSPClass = Class.forName(names.get("bew").getLeft());
+            movementInputField = entityPlayerSPClass.getDeclaredField(names.get("bew").getMiddle().get("b"));
             sendChatMessageMethod = entityPlayerSPClass.getDeclaredMethod(names.get("bew").getRight().get("e(Ljava/lang/String;)V"), String.class);
+
+            movementInputClass = Class.forName(names.get("beu").getLeft());
+            moveStrafeField = movementInputClass.getDeclaredField(names.get("beu").getMiddle().get("a"));
+            moveForwardField = movementInputClass.getDeclaredField(names.get("beu").getMiddle().get("b"));
+            jumpField = movementInputClass.getDeclaredField(names.get("beu").getMiddle().get("c"));
+            sneakField = movementInputClass.getDeclaredField(names.get("beu").getMiddle().get("d"));
 
             entityRendererClass = Class.forName(names.get("bfk").getLeft());
             updateCameraAndRenderMethod = entityRendererClass.getDeclaredMethod(names.get("bfk").getRight().get("a(FJ)V"), float.class, long.class);

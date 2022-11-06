@@ -29,6 +29,51 @@ public class PlayerUtil {
         }
     }
 
+    private static Object movementInput() {
+        try {
+            return movementInputField.get(thePlayer());
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    public static float moveStrafe() {
+        try {
+            return moveStrafeField.getFloat(movementInput());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+
+    public static float moveForward() {
+        try {
+            return moveForwardField.getFloat(movementInput());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+
+    public static boolean isMoving() {
+        return  moveForward() != 0 || moveStrafe() != 0;
+    }
+
+    public static boolean isJumping() {
+        try {
+            return jumpField.getBoolean(movementInput());
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+    public static boolean isSneaking() {
+        try {
+            return sneakField.getBoolean(movementInput());
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+
     public static void addChatComponentMessage(String text) {
         try {
             Object chatComponentText = chatComponentTextClass.getDeclaredConstructor(String.class).newInstance(text);
@@ -42,31 +87,49 @@ public class PlayerUtil {
         } catch (Exception ignored) { }
     }
 
-    public static double motionX() {
+    public static double getMotionX() {
         try {
-            return (double) motionXField.get(thePlayer());
+            return motionXField.getDouble(thePlayer());
         } catch (Exception ignored) {
             return 0;
         }
     }
-    public static double motionY() {
+    public static double getMotionY() {
         try {
-            return (double) motionYField.get(thePlayer());
+            return motionYField.getDouble(thePlayer());
         } catch (Exception ignored) {
             return 0;
         }
     }
-    public static double motionZ() {
+    public static double getMotionZ() {
         try {
-            return (double) motionZField.get(thePlayer());
+            return motionZField.getDouble(thePlayer());
         } catch (Exception ignored) {
             return 0;
         }
     }
 
+    public static void setMotionX(double motionX) {
+        try {
+            motionXField.setDouble(thePlayer(), motionX);
+        } catch (Exception ignored) { }
+    }
+
+    public static void setMotionY(double motionY) {
+        try {
+            motionYField.setDouble(thePlayer(), motionY);
+        } catch (Exception ignored) { }
+    }
+
+    public static void setMotionZ(double motionZ) {
+        try {
+            motionZField.setDouble(thePlayer(), motionZ);
+        } catch (Exception ignored) { }
+    }
+
     public static float rotationYaw() {
         try {
-            return (float) rotationYawField.get(thePlayer());
+            return rotationYawField.getFloat(thePlayer());
         } catch (Exception ignored) {
             return 0;
         }
@@ -74,7 +137,7 @@ public class PlayerUtil {
 
     public static float rotationPitch() {
         try {
-            return (float) rotationPitchField.get(thePlayer());
+            return rotationPitchField.getFloat(thePlayer());
         } catch (Exception ignored) {
             return 0;
         }
@@ -82,7 +145,7 @@ public class PlayerUtil {
 
     public static boolean onGround() {
         try {
-            return (boolean) onGroundField.get(thePlayer());
+            return onGroundField.getBoolean(thePlayer());
         } catch (Exception ignored) {
             return false;
         }

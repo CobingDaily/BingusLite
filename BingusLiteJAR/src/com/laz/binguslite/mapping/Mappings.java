@@ -77,8 +77,14 @@ public class Mappings {
     public static Method printChatMessageMethod;
 
     public static Class<?> entityPlayerSPClass;
+    public static Field movementInputField;
     public static Method sendChatMessageMethod;
 
+    public static Class<?> movementInputClass;
+    public static Field moveStrafeField;
+    public static Field moveForwardField;
+    public static Field jumpField;
+    public static Field sneakField;
 
     public static Class<?> entityRendererClass;
     public static Method updateCameraAndRenderMethod;
