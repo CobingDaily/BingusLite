@@ -1,7 +1,8 @@
 package com.laz.binguslite.events.listeners;
 
 import com.laz.binguslite.events.Event;
-import com.laz.binguslite.utils.PlayerUtil;
+import com.laz.binguslite.utilities.impl.MovementUtils;
+import com.laz.binguslite.utilities.impl.PlayerUtil;
 
 public class EventMove extends Event {
     public double x, y, z;
@@ -37,7 +38,7 @@ public class EventMove extends Event {
     }
 
     public void setSpeed(double moveSpeed) {
-        setSpeed(moveSpeed, PlayerUtil.rotationYaw(), PlayerUtil.moveStrafe(), PlayerUtil.moveForward());
+        setSpeed(moveSpeed, PlayerUtil.rotationYaw(), MovementUtils.moveStrafe(), MovementUtils.moveForward());
     }
 
     public void setSpeed(double moveSpeed, float pseudoYaw, double pseudoStrafe, double pseudoForward) {
@@ -69,8 +70,8 @@ public class EventMove extends Event {
         double x = forward * moveSpeed * mx + strafe * moveSpeed * mz;
         double z = forward * moveSpeed * mz - strafe * moveSpeed * mx;
 
-        PlayerUtil.setMotionX(x);
-        PlayerUtil.setMotionZ(z);
+        MovementUtils.setMotionX(x);
+        MovementUtils.setMotionZ(z);
         setX(x);
         setZ(z);
 

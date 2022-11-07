@@ -2,9 +2,8 @@ package com.laz.binguslite.command.commands;
 
 import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.command.Command;
-import com.laz.binguslite.utils.PlayerUtil;
+import com.laz.binguslite.utilities.impl.PlayerUtil;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;

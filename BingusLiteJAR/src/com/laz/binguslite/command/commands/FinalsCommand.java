@@ -2,9 +2,7 @@ package com.laz.binguslite.command.commands;
 
 import com.laz.binguslite.BingusLite;
 import com.laz.binguslite.command.Command;
-import com.laz.binguslite.utils.PlayerUtil;
-
-import java.lang.reflect.InvocationTargetException;
+import com.laz.binguslite.utilities.impl.PlayerUtil;
 
 public class FinalsCommand implements Command {
     @Override

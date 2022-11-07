@@ -1,11 +1,7 @@
 package com.laz.binguslite.instrument.transformer.transformers;
 
-import com.laz.binguslite.BingusLite;
-import com.laz.binguslite.events.EventType;
-import com.laz.binguslite.events.listeners.EventMove;
 import com.laz.binguslite.instrument.transformer.CustomClassWriter;
 import com.laz.binguslite.instrument.transformer.Transformer;
-import com.laz.binguslite.utils.PlayerUtil;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.*;
@@ -50,7 +46,7 @@ public class EntityTransformer implements Transformer {
         insnList.add(new VarInsnNode(ASTORE, 7));
 
         insnList.add(new VarInsnNode(ALOAD, 0));
-        insnList.add(new MethodInsnNode(INVOKESTATIC, "com/laz/binguslite/utils/PlayerUtil", "thePlayer", "()Ljava/lang/Object;", false));
+        insnList.add(new MethodInsnNode(INVOKESTATIC, "com/laz/binguslite/utilities/impl/PlayerUtil", "thePlayer", "()Ljava/lang/Object;", false));
         LabelNode ifacmpne = new LabelNode();
         insnList.add(new JumpInsnNode(IF_ACMPNE, ifacmpne));
 

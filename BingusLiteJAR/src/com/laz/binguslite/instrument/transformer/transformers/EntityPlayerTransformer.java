@@ -1,17 +1,11 @@
 package com.laz.binguslite.instrument.transformer.transformers;
 
-import com.laz.binguslite.BingusLite;
-import com.laz.binguslite.events.listeners.EventJump;
 import com.laz.binguslite.instrument.transformer.CustomClassWriter;
 import com.laz.binguslite.instrument.transformer.Transformer;
-import com.laz.binguslite.utils.PlayerUtil;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 
-import javax.swing.*;
-import java.lang.reflect.InvocationTargetException;
 import java.security.ProtectionDomain;
 import java.util.List;
 
@@ -49,7 +43,7 @@ public class EntityPlayerTransformer implements Transformer {
         insnList.add(new VarInsnNode(ASTORE, 1));
 
         insnList.add(new VarInsnNode(ALOAD, 0));
-        insnList.add(new MethodInsnNode(INVOKESTATIC, "com/laz/binguslite/utils/PlayerUtil", "thePlayer", "()Ljava/lang/Object;", false));
+        insnList.add(new MethodInsnNode(INVOKESTATIC, "com/laz/binguslite/utilities/impl/PlayerUtil", "thePlayer", "()Ljava/lang/Object;", false));
         LabelNode ifacmpne = new LabelNode();
         insnList.add(new JumpInsnNode(IF_ACMPNE, ifacmpne));
 

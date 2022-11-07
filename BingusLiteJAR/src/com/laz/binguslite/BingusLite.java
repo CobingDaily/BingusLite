@@ -3,8 +3,6 @@ package com.laz.binguslite;
 import com.google.gson.Gson;
 import com.laz.binguslite.command.CommandManager;
 import com.laz.binguslite.events.Event;
-import com.laz.binguslite.events.listeners.EventJump;
-import com.laz.binguslite.events.listeners.EventMotion;
 import com.laz.binguslite.events.listeners.EventMove;
 import com.laz.binguslite.events.listeners.EventTick;
 import com.laz.binguslite.finalscounter.ChatMessageParser;
@@ -16,14 +14,14 @@ import com.laz.binguslite.mapping.mappings.Lunar;
 import com.laz.binguslite.mapping.mappings.Vanilla;
 import com.laz.binguslite.modules.Module;
 import com.laz.binguslite.modules.ghost.AutoClicker;
-import com.laz.binguslite.utils.PlayerUtil;
+import com.laz.binguslite.modules.movement.LegitSpeed;
+import com.laz.binguslite.utilities.impl.MovementUtils;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
@@ -112,6 +110,7 @@ public class BingusLite {
         }
 
         modules.put(AutoClicker.class, new AutoClicker());
+        modules.put(LegitSpeed.class, new LegitSpeed());
 
         return true;
     }
