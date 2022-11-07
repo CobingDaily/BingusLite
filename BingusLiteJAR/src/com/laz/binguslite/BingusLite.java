@@ -15,6 +15,7 @@ import com.laz.binguslite.mapping.mappings.Vanilla;
 import com.laz.binguslite.modules.Module;
 import com.laz.binguslite.modules.ghost.AutoClicker;
 import com.laz.binguslite.modules.movement.LegitSpeed;
+import com.laz.binguslite.modules.render.HUD;
 import com.laz.binguslite.utilities.impl.MovementUtils;
 
 import javax.swing.*;
@@ -109,6 +110,7 @@ public class BingusLite {
             return false;
         }
 
+        modules.put(HUD.class, new HUD());
         modules.put(AutoClicker.class, new AutoClicker());
         modules.put(LegitSpeed.class, new LegitSpeed());
 
