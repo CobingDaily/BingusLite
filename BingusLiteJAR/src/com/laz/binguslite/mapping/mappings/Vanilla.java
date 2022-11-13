@@ -63,12 +63,29 @@ public class Vanilla extends Mapping {
 
         names.get("wn").setLeft("wn");
         names.get("wn").getRight().replace("b(Leu;)V", "b");
+        names.get("wn").getRight().replace("bF()V", "bF");
+
+        names.get("pk").setLeft("pk");
+        names.get("pk").getMiddle().replace("v", "v");
+        names.get("pk").getMiddle().replace("w", "w");
+        names.get("pk").getMiddle().replace("x", "x");
+        names.get("pk").getMiddle().replace("y", "y");
+        names.get("pk").getMiddle().replace("z", "z");
+        names.get("pk").getMiddle().replace("C", "C");
+        names.get("pk").getRight().replace("d(DDD)V", "d");
 
         names.get("avt").setLeft("avt");
         names.get("avt").getRight().replace("a(Leu;)V", "a");
 
         names.get("bew").setLeft("bew");
+        names.get("bew").getMiddle().replace("b", "b");
         names.get("bew").getRight().replace("e(Ljava/lang/String;)V", "e");
+
+        names.get("beu").setLeft("beu");
+        names.get("beu").getMiddle().replace("a", "a");
+        names.get("beu").getMiddle().replace("b", "b");
+        names.get("beu").getMiddle().replace("c", "c");
+        names.get("beu").getMiddle().replace("d", "d");
 
         names.get("bfk").setLeft("bfk");
         names.get("bfk").getRight().replace("a(FJ)V", "a");

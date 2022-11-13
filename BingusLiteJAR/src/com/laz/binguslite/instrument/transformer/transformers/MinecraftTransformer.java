@@ -71,7 +71,33 @@ public class MinecraftTransformer implements Transformer {
                 }
                 if (method.name.equals(runTickMethod.getName()) && method.desc.equals("()V")) {
                     method.instructions.insert(onTickPre());
+
+                    for (AbstractInsnNode abstractInsnNode : method.instructions.toArray()) {
+                        if (abstractInsnNode instanceof VarInsnNode && abstractInsnNode.getNext() instanceof InsnNode) {
+                            VarInsnNode varInsnNode = (VarInsnNode) abstractInsnNode;
+                            InsnNode insnNode = (InsnNode) abstractInsnNode.getNext();
+
+                            boolean opcodeCheck;
+                            boolean varCheck;
+                            boolean nextOpcodeCheck;
+
+                            switch (client) {
+
+                                default:
+                                    opcodeCheck = varInsnNode.getOpcode() == ILOAD;
+                                    varCheck = varInsnNode.var == 1;
+                                    nextOpcodeCheck = insnNode.getOpcode() == ICONST_1;
+                            }
+
+
+
+                            if (opcodeCheck && varCheck && nextOpcodeCheck) {
+                                method.instructions.insert(varInsnNode.getPrevious(), onKey());
+                            }
+                        }
+                    }
                 }
+
             }
             ClassWriter classWriter = new CustomClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
             classNode.accept(classWriter);
@@ -114,6 +140,16 @@ public class MinecraftTransformer implements Transformer {
 
         return insnList;
 
+    }
+
+    private InsnList onKey() {
+        InsnList insnList = new InsnList();
+
+        insnList.add(new FieldInsnNode(GETSTATIC, "com/laz/binguslite/BingusLite", "instance", "Lcom/laz/binguslite/BingusLite;"));
+        insnList.add(new VarInsnNode(ILOAD, 1));
+        insnList.add(new MethodInsnNode(INVOKEVIRTUAL, "com/laz/binguslite/BingusLite", "keyPress", "(I)V", false));
+
+        return insnList;
     }
 
     private InsnList onTick() {

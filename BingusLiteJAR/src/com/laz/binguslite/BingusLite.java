@@ -3,6 +3,7 @@ package com.laz.binguslite;
 import com.google.gson.Gson;
 import com.laz.binguslite.command.CommandManager;
 import com.laz.binguslite.events.Event;
+import com.laz.binguslite.events.listeners.EventKey;
 import com.laz.binguslite.events.listeners.EventMove;
 import com.laz.binguslite.events.listeners.EventTick;
 import com.laz.binguslite.finalscounter.ChatMessageParser;
@@ -17,6 +18,7 @@ import com.laz.binguslite.modules.ghost.AutoClicker;
 import com.laz.binguslite.modules.movement.LegitSpeed;
 import com.laz.binguslite.modules.render.HUD;
 import com.laz.binguslite.utilities.impl.MovementUtils;
+import com.laz.binguslite.utilities.impl.PlayerUtil;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
@@ -149,6 +151,19 @@ public class BingusLite {
             if (!module.isEnabled())
                 module.toggle();
             module.onEvent(event);
+        }
+    }
+
+    public void keyPress(int key) {
+        EventKey eventKey = new EventKey(key);
+        onEvent(eventKey);
+        if (!eventKey.isCancelled()) {
+            for (Module module : modules.values()) {
+                if (module.getKey() == key) {
+                    module.toggle();
+                    PlayerUtil.addChatComponentMessage("Toggled " + module.getName() + ": " + module.isEnabled());
+                }
+            }
         }
     }
 

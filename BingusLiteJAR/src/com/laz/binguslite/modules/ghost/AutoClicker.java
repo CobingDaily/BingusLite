@@ -1,10 +1,15 @@
 package com.laz.binguslite.modules.ghost;
 
 import com.laz.binguslite.events.Event;
+import com.laz.binguslite.events.listeners.EventMove;
 import com.laz.binguslite.events.listeners.EventRenderTick;
 import com.laz.binguslite.modules.Module;
 import com.laz.binguslite.settings.BooleanSetting;
 import com.laz.binguslite.settings.NumberSetting;
+import com.laz.binguslite.utilities.impl.GameUtils;
+import com.laz.binguslite.utilities.impl.MouseUtil;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
 
@@ -36,7 +41,11 @@ public class AutoClicker extends Module {
 
     public AutoClicker() {
         super("Auto Clicker", Category.GHOST);
-        setToggled(true);
+    }
+
+    @Override
+    public int getKey() {
+        return Keyboard.KEY_H;
     }
 
     @Override

@@ -5,9 +5,10 @@ import com.laz.binguslite.events.listeners.EventJump;
 import com.laz.binguslite.modules.Module;
 import com.laz.binguslite.settings.NumberSetting;
 import com.laz.binguslite.utilities.impl.MovementUtils;
+import org.lwjgl.input.Keyboard;
 
 public class LegitSpeed extends Module {
-    NumberSetting speed = new NumberSetting("Speed", 40, 0, 100, 1);
+    NumberSetting speed = new NumberSetting("Speed", 60, 0, 100, 1);
 
     public LegitSpeed() {
         super("Legit Speed", Category.MOVEMENT);
@@ -16,6 +17,11 @@ public class LegitSpeed extends Module {
     @Override
     public String getSuffix() {
         return String.valueOf(speed.getValue());
+    }
+
+    @Override
+    public int getKey() {
+        return Keyboard.KEY_J;
     }
 
     @Override
